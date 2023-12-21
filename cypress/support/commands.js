@@ -4,10 +4,6 @@ const zoomOut = () => {
       doc.body.style.zoom = 1.0;
     });
   };
-
-
-
-
 import 'cypress-wait-until';
 Cypress.Commands.add('login', (
     username = Cypress.env('USERNAME'),
@@ -110,17 +106,45 @@ Cypress.Commands.add('criarComanda', () => {
     cy.get('button[type="submit"][form="formComanda"]').click();
 })
 
-Cypress.Commands.add('fazerPedido', () => {
-    zoomOut();
+Cypress.Commands.add('pedidoSushibar', () => {
     cy.get('#showProfile').click(); 
     cy.contains('Alterar Empresa').click();
     cy.contains('Kuzori Comida Japonesa').click();
     cy.get('a[href="/commands"]').click();
-    cy.get('.py-2.px-4.flex.gap-3.cursor-pointer[aria-checked="false"]').click();
+    cy.get('[class*="py-2 px-4 flex gap-3 cursor-pointer"][aria-checked="false"]').click();
     cy.contains('span', 'sushibar').click();
     cy.contains('Hossomaki de pepino').click();
-    cy.wait(5000)
-    cy.contains('Hossomaki de pepino').click();
-    cy.wait(5000)
-    cy.contains('Hossomaki de pepino').click();
+    cy.wait(5000);
+    cy.contains('Hossomaki de kani').click();
+    cy.wait(5000);
+    cy.contains('Uramaki de salmão').click();
+    cy.wait(5000);
+    cy.contains('Jyô ebi').click();
+})
+
+Cypress.Commands.add('pedidoCozinhaQuente', () => {
+    //cy.get('#showProfile').click(); 
+    //cy.contains('Alterar Empresa').click();
+    //cy.contains('Kuzori Comida Japonesa').click();
+    //cy.get('a[href="/commands"]').click();
+    //cy.get('[class*="py-2 px-4 flex gap-3 cursor-pointer"][aria-checked="false"]').click();
+    cy.contains('span', 'PRATOS QUENTES').click();
+    cy.contains('Guioza').click();
+    cy.wait(5000);
+    cy.contains('Shimeji').click();
+    cy.wait(5000);
+    cy.contains('Yakisoba').click();
+    cy.wait(5000);
+    cy.contains('Salmão grelhado').click();
+    cy.wait(5000);
+    cy.contains('Tilapia grelhada').click();
+})
+
+Cypress.Commands.add('finalizaPedido', () => {
+    cy.wait(5000);
+    cy.contains('Ver carrinho').click();
+    cy.contains('Confirmar').click();
+    cy.contains('Atribuir em comanda').click();
+    cy.get('select').select('007');
+    cy.contains('Atribuir Pedido').click();
 })
