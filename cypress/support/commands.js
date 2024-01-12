@@ -4,6 +4,8 @@ const zoomOut = () => {
       doc.body.style.zoom = 1.0;
     });
   };
+
+//COMEÇO DO BLOCO DE COMANDOS DE LOGIN
 import 'cypress-wait-until';
 Cypress.Commands.add('login', (
     username = Cypress.env('USERNAME'),
@@ -52,16 +54,29 @@ Cypress.Commands.add('loginSemUsuario', (
     cy.contains('button', 'Login').click()
     cy.contains('span.text-red-500', 'Nome de usuário obrigatório').should('be.visible')
 })
+//FIM DO BLOCO DE COMANDOS PARA LOGIN
 
-Cypress.Commands.add('acessarCardapio', () => {
-    cy.get('[href="/menu"]').click();
-    cy.contains('span', 'Cardápio').click({force: true});
-    cy.request('GET', 'https://backoffice-homo.connx.com.br/api/auth/session')
-    .then((response) => {
-     expect(response.status).to.equal(200);
-    cy.contains('h1', 'Cardápio').should('be.visible');
-        })
+//ALTERAR EMPRESA
+Cypress.Commands.add('alterarEmpresa', () => {
+    cy.get('svg.text-connex-black-3').click({ multiple: true, force: true });
+    cy.get('.rounded.hover\\:text-white.disabled\\:bg-btn-3.disabled\\:text-primary-3.disabled\\:cursor-not-allowed.w-full.h-auto.flex.flex-row.items-center.gap-4.p-4.bg-transparent.text-connex-black-3.text-xs.hover\\:bg-primary-2')
+  .click({multiple: true, force: true});
+    cy.contains('span', 'Touch & Eat comanda').click();
+    cy.get('a[href="/menu"][aria-checked="false"]')
+  .click();
+    cy.contains('h1', 'Meus Cardápios').should('be.visible');
 })
+
+//COMEÇO DO BLOCO DE COMANDOS DO CARDÁPIO
+
+Cypress.Commands.add('criarCardapio', () => {
+    cy.get()
+
+})
+
+
+
+
 
 Cypress.Commands.add('criarCategoria', () => {
     cy.intercept('GET', 'https://touch.zapier.app/api/maintenance', {
