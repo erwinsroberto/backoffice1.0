@@ -70,8 +70,10 @@ Cypress.Commands.add('alterarEmpresa', () => {
 //COMEÇO DO BLOCO DE COMANDOS DO CARDÁPIO
 
 Cypress.Commands.add('criarCardapio', () => {
-    cy.get()
-
+    cy.get('#productButton').click();
+    cy.contains('h1', 'Criar novo cardápio').should('be.visible');
+    cy.get('#formModalCardapio > :nth-child(1) > .flex > .bg-none').type('teste');
+    cy.get('#formModalCardapio > :nth-child(2) > .flex > .bg-none').type('descrição teste');
 })
 
 
