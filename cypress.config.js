@@ -9,6 +9,6 @@ module.exports = defineConfig({
     },
     baseUrl: "https://backoffice-homo.connx.com.br/"
   },
-    "viewportWidth": 1920,
-    "viewportHeight": 1080
+    "viewportWidth": 1720,
+    "viewportHeight": (1080*0.8435),
 });

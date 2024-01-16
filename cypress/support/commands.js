@@ -1,7 +1,7 @@
 // Zoom out em 80%
 const zoomOut = () => {
     cy.document().then((doc) => {
-      doc.body.style.zoom = 1.0;
+      doc.body.style.zoom = 2.0;
     });
   };
 
@@ -164,4 +164,27 @@ Cypress.Commands.add('finalizaPedido', () => {
     cy.contains('Atribuir em comanda').click();
     cy.get('select').select('007');
     cy.contains('Atribuir Pedido').click();
+})
+
+//BLOCO DE COMANDOS TELA DE CLIENTE
+
+Cypress.Commands.add('cadastrarCliente', () => {
+    cy.get('#showProfile').click();
+    cy.contains('Alterar Empresa').click();
+    cy.contains('Touch & Eat comanda').click();
+    cy.get('a[href="/clients"]').click();
+    cy.get('#newClient').click();
+    cy.contains('h1', 'Cadastro de Cliente').should('be.visible');
+    cy.get('#name').type('teste', {force:true});
+    cy.get('#apelido').type('apelido teste', {force:true});
+    cy.get('#cpf').type('46859862135', {force:true});
+    cy.get('#telefone').type('15655223536', {force:true});
+    cy.get('#email').type('teste@gmail.com', {force:true});
+    cy.get('#cep').type('1659485236', {force:true});
+    cy.get('#endereco').type('rua teste', {force:true});
+    cy.get('#numero').type('10', {force:true});
+    cy.get('#bairro').type('bairro teste', {force:true});
+    cy.get('#cidade').type('cidade teste', {force:true});  
+    cy.get('#observacao').type('observação de teste', {force:true});
+    cy.get('#btn-save').click();
 })
